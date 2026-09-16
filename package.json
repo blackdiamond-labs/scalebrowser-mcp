@@ -1,0 +1,17 @@
+{
+  "name": "scalebrowser-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stdio MCP bridge to the Scalebrowser desktop app, plus client configs, Agent Skills and SDK examples.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "scalebrowser-mcp": "bridge/scalebrowser-mcp.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test bridge/*.test.mjs"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "scalebrowser-example-node",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node top-stories.mjs"
+  },
+  "dependencies": {
+    "@scalebrowser/sdk": "0.7.0"
+  }
+}

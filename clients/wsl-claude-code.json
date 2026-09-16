@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "scalebrowser": {
+      "command": "/mnt/c/Users/<you>/AppData/Local/Programs/Scalebrowser/resources/daemon/scalebrowser-daemon.exe",
+      "args": ["--mcp-stdio", "--data-dir", "C:/Users/<you>/AppData/Local/Scalebrowser"]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "scalebrowser": {
+      "serverUrl": "http://127.0.0.1:8787/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer <token>"
+      }
+    }
+  }
+}

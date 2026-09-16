@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "scalebrowser": {
+      "type": "http",
+      "url": "http://127.0.0.1:8787/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:scalebrowser-token}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "scalebrowser-token",
+      "type": "promptString",
+      "description": "Scalebrowser API token",
+      "password": true
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+[
+  {
+    "name": "lease_profile",
+    "description": "Reserve a free profile, start its browser, bind a tab, and return the handle."
+  },
+  {
+    "name": "lease_fleet",
+    "description": "The same for several profiles at once, one handle each."
+  },
+  {
+    "name": "lease_renew",
+    "description": "Push the reservation's deadline out without losing the handle."
+  },
+  {
+    "name": "start_run",
+    "description": "Say in one sentence what this stretch of work is for, so the operator sees it."
+  },
+  {
+    "name": "release_profile",
+    "description": "End the reservation and stop the browser. Records how the work went."
+  },
+  {
+    "name": "open_page",
+    "description": "Navigate to a public http or https address, and get the full page map back."
+  },
+  {
+    "name": "snapshot",
+    "description": "What is on the page now. A diff, unless you ask for a full map."
+  },
+  {
+    "name": "click",
+    "description": "Click an element, optionally a point inside it, for a picture rather than a control."
+  },
+  {
+    "name": "press_and_hold",
+    "description": "The whole press-and-hold gesture, in one call."
+  },
+  {
+    "name": "type_text",
+    "description": "Click a field and type into it at this profile's own cadence."
+  },
+  {
+    "name": "fill_form",
+    "description": "Several fields in one call."
+  },
+  {
+    "name": "press_key",
+    "description": "A key, including modifier chords."
+  },
+  {
+    "name": "scroll",
+    "description": "A real wheel gesture with momentum, not a jump."
+  },
+  {
+    "name": "wait_for",
+    "description": "Wait for text or an element to appear, to go, or for the page to go quiet."
+  },
+  {
+    "name": "screenshot",
+    "description": "Capture the page or one element, for when the text map cannot describe it."
+  },
+  {
+    "name": "record",
+    "description": "Start or stop recording what the browser is doing."
+  },
+  {
+    "name": "video",
+    "description": "Turn a recording into a film, and check on one that is rendering."
+  },
+  {
+    "name": "read_value",
+    "description": "Read one thing from an element: text, an allowed attribute, a count, a table."
+  },
+  {
+    "name": "read_text",
+    "description": "Read the page's prose verbatim, for an article or a thread of comments."
+  },
+  {
+    "name": "interruption_respond",
+    "description": "Answer what the browser itself is asking: a permission prompt, a device chooser."
+  },
+  {
+    "name": "secret_list",
+    "description": "Which values this profile holds that the agent may use but not read."
+  },
+  {
+    "name": "interact",
+    "description": "Hover, drag, upload a file, or choose from a native dropdown."
+  },
+  {
+    "name": "navigate",
+    "description": "History and tabs, including the popup a click just opened."
+  },
+  {
+    "name": "measure_frames",
+    "description": "How a moving element behaves over time, for a slider or an animation."
+  },
+  {
+    "name": "measure_gap",
+    "description": "The distance between two elements, for a puzzle piece and its slot."
+  },
+  {
+    "name": "transcribe_audio",
+    "description": "Turn an audio challenge into text, through the operator's own command."
+  },
+  {
+    "name": "measure_rotation",
+    "description": "How far an image is turned, for a rotation challenge."
+  },
+  {
+    "name": "interruption_list",
+    "description": "What the browser is currently asking, if anything."
+  },
+  {
+    "name": "passkey_list",
+    "description": "Which sites this profile can sign in to without a password."
+  },
+  {
+    "name": "passkey_retire",
+    "description": "Stop this profile from offering one passkey, for good."
+  },
+  {
+    "name": "cookie_list",
+    "description": "The shape of the cookie jar. Never a value."
+  },
+  {
+    "name": "cookie_delete",
+    "description": "Remove one cookie, or every cookie of one site."
+  },
+  {
+    "name": "page_report",
+    "description": "Console messages and a request summary. Never headers, cookies or bodies."
+  },
+  {
+    "name": "clipboard",
+    "description": "Read or write the clipboard of the bound tab."
+  },
+  {
+    "name": "save_pdf",
+    "description": "Save the current page as a PDF artifact."
+  },
+  {
+    "name": "download_file",
+    "description": "Follow a download and keep the result as an artifact."
+  },
+  {
+    "name": "artifact_list",
+    "description": "What this profile has produced: screenshots, downloads, PDFs, recordings."
+  },
+  {
+    "name": "run_list",
+    "description": "This profile's earlier runs, so an agent can see what was already tried."
+  },
+  {
+    "name": "profile.list",
+    "description": "The profiles on this daemon, with their state."
+  },
+  {
+    "name": "profile.create",
+    "description": "Create a profile with a fresh identity."
+  },
+  {
+    "name": "profile.start",
+    "description": "Start a profile's browser. Does not give you one you can drive."
+  },
+  {
+    "name": "profile.stop",
+    "description": "Stop a profile's browser."
+  },
+  {
+    "name": "profile.update",
+    "description": "Change a profile's settings: name, proxy, group, geo mode."
+  },
+  {
+    "name": "input.humanize",
+    "description": "Dispatch one humanized gesture at a coordinate, outside the page map."
+  },
+  {
+    "name": "session.export",
+    "description": "A profile's session as a password-encrypted bundle."
+  },
+  {
+    "name": "session.import",
+    "description": "Unseal such a bundle into a profile."
+  },
+  {
+    "name": "credential.list",
+    "description": "Which platforms a profile can log into. Account names, never secrets."
+  },
+  {
+    "name": "group.list",
+    "description": "The groups profiles are labelled with."
+  },
+  {
+    "name": "profile.batch",
+    "description": "Start, stop, delete, or reassign a proxy or extensions across many profiles."
+  },
+  {
+    "name": "preset.instantiate",
+    "description": "Make a fleet from a template: N profiles, each with its own identity."
+  },
+  {
+    "name": "task.list",
+    "description": "What is outstanding on a profile."
+  },
+  {
+    "name": "task.add",
+    "description": "Put work on a profile's list, for now or for later."
+  },
+  {
+    "name": "task.start",
+    "description": "Mark a task as being worked on."
+  },
+  {
+    "name": "task.done",
+    "description": "Close a task, with what came of it."
+  },
+  {
+    "name": "task.cancel",
+    "description": "Drop a task that no longer applies."
+  },
+  {
+    "name": "proxy.list",
+    "description": "The proxy pool. Never credentials."
+  },
+  {
+    "name": "extension.list",
+    "description": "The extension library, and what each profile loads."
+  },
+  {
+    "name": "preset.list",
+    "description": "The stored templates."
+  },
+  {
+    "name": "group.create",
+    "description": "Create a group."
+  },
+  {
+    "name": "group.delete",
+    "description": "Delete a group. Its profiles stay."
+  },
+  {
+    "name": "credential_fill",
+    "description": "Sign in with this profile's stored login. The agent never receives it."
+  },
+  {
+    "name": "credential_new",
+    "description": "Sign up: the daemon draws the password, stores it, and types it."
+  },
+  {
+    "name": "credential_store",
+    "description": "Put a login the profile already has into the vault."
+  },
+  {
+    "name": "read_inbox",
+    "description": "The profile's confirmation codes, by mail or by text."
+  },
+  {
+    "name": "inbox_open_link",
+    "description": "Open a link out of a message, by its number. The address is never shown."
+  }
+]

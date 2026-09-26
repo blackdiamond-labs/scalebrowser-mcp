@@ -1,0 +1,20 @@
+{
+  "name": "scalebrowser",
+  "version": "0.1.0",
+  "description": "Isolated browsers with a persistent identity for AI agents, on your own Windows machine. Connects Claude Code to the Scalebrowser app and teaches it the lease, read, act, release loop.",
+  "author": {
+    "name": "Scalebrowser",
+    "email": "support@scalebrowser.net",
+    "url": "https://scalebrowser.net"
+  },
+  "homepage": "https://scalebrowser.net/docs/agents/mcp-server",
+  "repository": "https://github.com/blackdiamond-labs/scalebrowser-mcp",
+  "license": "MIT",
+  "keywords": [
+    "browser",
+    "browser-automation",
+    "mcp",
+    "ai-agents",
+    "windows"
+  ]
+}

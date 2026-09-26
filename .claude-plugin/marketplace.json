@@ -1,0 +1,19 @@
+{
+  "name": "scalebrowser",
+  "owner": {
+    "name": "Scalebrowser",
+    "email": "support@scalebrowser.net"
+  },
+  "metadata": {
+    "description": "The Scalebrowser plugin for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "scalebrowser",
+      "source": "./",
+      "description": "Isolated browsers with a persistent identity for AI agents, on your own Windows machine.",
+      "category": "productivity",
+      "homepage": "https://scalebrowser.net"
+    }
+  ]
+}

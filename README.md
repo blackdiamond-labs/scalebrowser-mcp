@@ -35,7 +35,7 @@ Each file below is the configuration from the [official documentation](https://s
 
 | Client | Configuration |
 | --- | --- |
-| Claude Code | [claude-code.mcp.json](clients/claude-code.mcp.json) or the command above |
+| Claude Code | [claude-code.mcp.json](clients/claude-code.mcp.json), the command above, or the [plugin](#as-a-claude-code-plugin) |
 | Claude desktop app | [claude-desktop.json](clients/claude-desktop.json) |
 | Cursor | [cursor.mcp.json](clients/cursor.mcp.json) |
 | Codex | [codex.config.toml](clients/codex.config.toml) |
@@ -46,7 +46,7 @@ Each file below is the configuration from the [official documentation](https://s
 
 ## What your agent gets
 
-The agent works from a text map of the page and addresses elements by reference. It looks at the page once, then only at what moved: 13,507 tokens where Playwright MCP needs 2.1 million.
+The agent works from a text map of the page and addresses elements by reference. It looks at the page once, then only at what moved. Over 75 steps on the same page, that spends 11x less on model tokens than Playwright MCP.
 
 - **Signing in:** `credential_fill` signs in with a login stored in the profile, and `credential_new` signs up with a password Scalebrowser draws and stores. The agent never sees the value.
 - **Confirmation codes:** `read_inbox` reads the codes sent to the address bound to the profile, and `inbox_open_link` opens a link from a message.
@@ -72,6 +72,17 @@ It needs Node 22 or newer. `--data-dir` points it at another data directory, and
 Each [release](https://github.com/blackdiamond-labs/scalebrowser-mcp/releases) carries the bridge as an MCP Bundle, `scalebrowser-<version>.mcpb`. Download it on the Windows machine the app runs on and open it with the Claude desktop app, or choose **Settings, Extensions, Install Extension** there. It needs no configuration: it finds the app and its token by itself.
 
 The bridge is also listed in the [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=net.scalebrowser) as `net.scalebrowser/mcp`.
+
+### As a Claude Code plugin
+
+This repository is also a Claude Code plugin. In Claude Code on the Windows machine the app runs on:
+
+```text
+/plugin marketplace add blackdiamond-labs/scalebrowser-mcp
+/plugin install scalebrowser@scalebrowser
+```
+
+The plugin starts the bridge, so it needs Node 22 or newer and no token in any file. It also adds a skill that teaches the agent the lease, read, act, release loop, to look before it repeats a failed action, and to sign in with stored logins instead of asking for a password.
 
 ## SDK examples
 

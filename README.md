@@ -67,6 +67,12 @@ node bridge/scalebrowser-mcp.mjs
 
 It needs Node 22 or newer. `--data-dir` points it at another data directory, and `SCALEBROWSER_TOKEN` overrides the token file.
 
+### As a Claude desktop extension
+
+Each [release](https://github.com/blackdiamond-labs/scalebrowser-mcp/releases) carries the bridge as an MCP Bundle, `scalebrowser-<version>.mcpb`. Download it on the Windows machine the app runs on and open it with the Claude desktop app, or choose **Settings, Extensions, Install Extension** there. It needs no configuration: it finds the app and its token by itself.
+
+The bridge is also listed in the [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=net.scalebrowser) as `net.scalebrowser/mcp`.
+
 ## SDK examples
 
 The same small task in both SDKs: open Hacker News in a profile and print the three top stories. Run them on the Windows machine the app runs on, with your token in `SCALEBROWSER_TOKEN`.
@@ -85,12 +91,26 @@ python top_stories.py
 
 Both use the published SDKs, [@scalebrowser/sdk](https://www.npmjs.com/package/@scalebrowser/sdk) on npm and [scalebrowser](https://pypi.org/project/scalebrowser/) on PyPI. The [SDK documentation](https://scalebrowser.net/docs/sdks) covers the full surface.
 
+## Privacy Policy
+
+The bridge collects nothing, stores nothing and sends nothing to us or to anyone else.
+
+- **What it reads:** the address and API token the Scalebrowser app keeps in its data directory on your machine, `%LOCALAPPDATA%\Scalebrowser` unless you pass `--data-dir`.
+- **Where messages go:** only to the Scalebrowser app on the same machine. It refuses any address that is not this machine's own loopback address, so the token and your agent's messages never leave the computer through the bridge.
+- **What it keeps:** nothing. It holds the session with the app in memory and ends it when your client disconnects. It writes no files and no logs besides the status lines it prints to standard error.
+- **Third parties:** none. The bridge has no dependencies, no telemetry and no network access of its own beyond the loopback connection to the app.
+
+The Scalebrowser app itself, the account and the website are covered by the [Scalebrowser privacy policy](https://scalebrowser.net/legal/privacy). Questions about privacy go to support@scalebrowser.net.
+
+## Questions and support
+
+Write to support@scalebrowser.net. Issues are switched off in this repository; [CONTRIBUTING.md](CONTRIBUTING.md) says why.
+
 ## Links
 
 - [Website](https://scalebrowser.net)
 - [Documentation](https://scalebrowser.net/docs) and [Quickstart](https://scalebrowser.net/docs/quickstart)
 - [Pricing](https://scalebrowser.net/pricing)
-- Questions: support@scalebrowser.net
 
 ## License
 

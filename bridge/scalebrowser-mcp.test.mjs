@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -302,6 +302,20 @@ test('cli: over real stdin and stdout, an offline bridge serves the bundled tool
   const code = await new Promise((resolve) => child.on('close', resolve));
   const lines = stdout.trim().split('\n').map((line) => JSON.parse(line));
   assert.deepEqual([code, lines.map((m) => m.id), lines[1].result.tools.length], [0, [1, 2], 65]);
+});
+
+// npm and npx start a bin through a link in node_modules/.bin, so the path the
+// process is started with is not the path of the module it runs.
+test('cli: started through a link, as npm and npx start it, the bridge still serves', async () => {
+  const script = fileURLToPath(new URL('./scalebrowser-mcp.mjs', import.meta.url));
+  const link = join(emptyDataDir(), 'scalebrowser-mcp');
+  symlinkSync(script, link);
+  const child = spawn(process.execPath, [link, '--data-dir', emptyDataDir()], { env: {} });
+  let stdout = '';
+  child.stdout.on('data', (chunk) => { stdout += chunk; });
+  child.stdin.end(`${JSON.stringify(INITIALIZE)}\n`);
+  const code = await new Promise((resolve) => child.on('close', resolve));
+  assert.deepEqual([code, stdout.trim().split('\n').filter(Boolean).map((line) => JSON.parse(line).id)], [0, [1]]);
 });
 
 test('cli: a client that closes stdin right after its last request still gets the answers', async (t) => {

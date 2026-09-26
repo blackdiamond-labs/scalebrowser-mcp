@@ -2,6 +2,7 @@
 // A stdio MCP server for the Scalebrowser desktop app. With the app running it
 // relays every message to the app's own MCP endpoint and adds nothing; without
 // it, it answers with the tool list and a note on how to install the app.
+import { realpathSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createInterface } from 'node:readline';
@@ -46,7 +47,7 @@ async function findApp({ dataDir, env }) {
   return { url: `${base}/v1/mcp`, token };
 }
 
-export async function createBridge({ dataDir, env = {}, send, tools = [] }) {
+export async function createBridge({ dataDir, env = {}, send, tools = [], version = '0.0.0' }) {
   const app = await findApp({ dataDir, env });
   const reply = (message, result) => send({ jsonrpc: '2.0', id: message.id, result });
 
@@ -178,7 +179,7 @@ export async function createBridge({ dataDir, env = {}, send, tools = [] }) {
         reply(message, {
           protocolVersion: message.params?.protocolVersion ?? '2025-06-18',
           capabilities: { tools: {} },
-          serverInfo: { name: 'scalebrowser', version: '0.1.0' },
+          serverInfo: { name: 'scalebrowser', version },
           instructions: SETUP_HINT,
         });
       } else if (message.method === 'tools/list') {
@@ -205,12 +206,14 @@ function dataDirFrom(argv, env) {
 async function main() {
   const dataDir = dataDirFrom(process.argv.slice(2), process.env);
   const tools = JSON.parse(await readFile(new URL('./tools.json', import.meta.url), 'utf8'));
+  const { version } = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
   // Standard output belongs to the protocol; everything for a person goes to stderr.
   const log = (text) => process.stderr.write(`scalebrowser-mcp: ${text}\n`);
   const bridge = await createBridge({
     dataDir,
     env: process.env,
     tools,
+    version,
     send: (message) => process.stdout.write(`${JSON.stringify(message)}\n`),
   });
   log(bridge.mode === 'forward'
@@ -235,4 +238,15 @@ async function main() {
   });
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) await main();
+// npm and npx start a bin through a link in node_modules/.bin; the module itself
+// always runs from the resolved path, so the link has to be resolved to compare.
+function startedDirectly() {
+  if (!process.argv[1]) return false;
+  try {
+    return realpathSync(process.argv[1]) === fileURLToPath(import.meta.url);
+  } catch {
+    return false;
+  }
+}
+
+if (startedDirectly()) await main();

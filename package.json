@@ -1,15 +1,39 @@
 {
-  "name": "scalebrowser-mcp",
+  "name": "@scalebrowser/mcp",
   "version": "0.1.0",
-  "private": true,
-  "description": "Stdio MCP bridge to the Scalebrowser desktop app, plus client configs, Agent Skills and SDK examples.",
+  "mcpName": "net.scalebrowser/mcp",
+  "description": "Stdio MCP server for Scalebrowser: it connects your agent to the isolated browsers the Scalebrowser app runs on your own Windows machine.",
   "license": "MIT",
   "type": "module",
   "bin": {
     "scalebrowser-mcp": "bridge/scalebrowser-mcp.mjs"
   },
+  "files": [
+    "bridge/scalebrowser-mcp.mjs",
+    "bridge/tools.json"
+  ],
   "engines": {
     "node": ">=22"
+  },
+  "homepage": "https://scalebrowser.net",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackdiamond-labs/scalebrowser-mcp.git"
+  },
+  "bugs": {
+    "email": "support@scalebrowser.net"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "browser",
+    "ai-agent",
+    "browser-automation",
+    "scalebrowser"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "test": "node --test bridge/*.test.mjs"

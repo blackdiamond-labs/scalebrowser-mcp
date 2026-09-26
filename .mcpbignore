@@ -1,0 +1,11 @@
+# The bundle carries the bridge and what it reads at start, nothing else.
+*
+!manifest.json
+!icon.png
+!package.json
+!README.md
+!LICENSE
+!bridge
+bridge/*
+!bridge/scalebrowser-mcp.mjs
+!bridge/tools.json

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "net.scalebrowser/mcp",
+  "title": "Scalebrowser",
+  "description": "Isolated browsers with a persistent identity for AI agents, on your own Windows machine.",
+  "version": "0.1.0",
+  "websiteUrl": "https://scalebrowser.net",
+  "repository": {
+    "url": "https://github.com/blackdiamond-labs/scalebrowser-mcp",
+    "source": "github",
+    "id": "1373129716"
+  },
+  "icons": [
+    {
+      "src": "https://scalebrowser.net/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/blackdiamond-labs/scalebrowser-mcp/releases/download/v0.1.0/scalebrowser-0.1.0.mcpb",
+      "version": "0.1.0",
+      "fileSha256": "2fc1affab40c5517f4e07e6485928fdd11f676c2b5b3e0ac57182ee502a37a96",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

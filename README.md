@@ -1,3 +1,10 @@
+<a href="https://scalebrowser.net">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/blackdiamond-labs/scalebrowser-mcp/main/.github/logo-white.svg">
+    <img src="https://raw.githubusercontent.com/blackdiamond-labs/scalebrowser-mcp/main/.github/logo-ink.svg" alt="Scalebrowser" width="320">
+  </picture>
+</a>
+
 # Scalebrowser MCP
 
 **Your agent got blocked, stopped at a login, or gave up on a captcha?** Scalebrowser gives each AI agent its own isolated browser with a persistent identity, running on your own machine instead of a vendor's cloud. It stays signed in, handles the captcha, types like a human, and you can take over whenever you want.

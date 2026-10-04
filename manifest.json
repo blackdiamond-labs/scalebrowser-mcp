@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "scalebrowser",
   "display_name": "Scalebrowser",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Isolated browsers with a persistent identity for your agent, run by the Scalebrowser app on your own Windows machine.",
   "long_description": "Scalebrowser gives each AI agent its own browser profile that stays signed in, types like a human and works through verification challenges. The browsers run in the Scalebrowser desktop app on your Windows machine, not in a vendor's cloud. This extension connects Claude to that app: it relays every message to the app's own MCP endpoint and finds the app and its API token by itself. It needs the Scalebrowser app, installed and signed in, on the same Windows machine, and a Scalebrowser account with an active plan or trial. Without the app it lists the tools and says how to install it.",
   "author": {

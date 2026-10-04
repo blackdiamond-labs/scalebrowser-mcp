@@ -66,7 +66,13 @@ The full list is in the [tool reference](https://scalebrowser.net/docs/agents/to
 
 [bridge/scalebrowser-mcp.mjs](bridge/scalebrowser-mcp.mjs) is a stdio MCP server with no dependencies. With the Scalebrowser app running on the same Windows machine, it relays every message to the app's own MCP endpoint, using the address and token the app keeps in `%LOCALAPPDATA%\Scalebrowser`. Without the app, it answers with the tool list and install instructions. That second mode is what MCP directories see when they build this repository.
 
-Clients that speak HTTP do not need it: use the configurations above. For a client that only starts servers over stdio:
+Clients that speak HTTP do not need it: use the configurations above. For a client that only starts servers over stdio, run it from npm:
+
+```bash
+npx -y @scalebrowser/mcp
+```
+
+or from a clone of this repository:
 
 ```bash
 node bridge/scalebrowser-mcp.mjs

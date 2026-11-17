@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -301,7 +301,10 @@ test('cli: over real stdin and stdout, an offline bridge serves the bundled tool
   child.stdin.end(`${JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/list' })}\n`);
   const code = await new Promise((resolve) => child.on('close', resolve));
   const lines = stdout.trim().split('\n').map((line) => JSON.parse(line));
-  assert.deepEqual([code, lines.map((m) => m.id), lines[1].result.tools.length], [0, [1, 2], 65]);
+  // Every tool of the bundled snapshot, not a fixed count: the snapshot follows the public reference.
+  const bundled = JSON.parse(readFileSync(new URL('./tools.json', import.meta.url), 'utf8')).length;
+  assert.ok(bundled > 0);
+  assert.deepEqual([code, lines.map((m) => m.id), lines[1].result.tools.length], [0, [1, 2], bundled]);
 });
 
 // npm and npx start a bin through a link in node_modules/.bin, so the path the

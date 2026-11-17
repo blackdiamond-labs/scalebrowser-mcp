@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const SETUP_HINT = [
   'Scalebrowser is not running on this machine, so this server has no browser to drive.',
-  'Scalebrowser runs on Windows 10 or 11, 64-bit, and needs an account with an active plan or trial.',
+  'Scalebrowser runs on Windows 10 or 11, 64-bit, and needs a Scalebrowser account (the Free plan needs no card).',
   'Install the desktop app (https://scalebrowser.net/docs/install), sign in, start it,',
   'then restart this MCP server. It finds the app through %LOCALAPPDATA%\\Scalebrowser,',
   'or through the directory passed with --data-dir.',

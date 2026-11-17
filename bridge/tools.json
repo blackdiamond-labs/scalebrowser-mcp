@@ -129,7 +129,11 @@
   },
   {
     "name": "page_report",
-    "description": "Console messages and a request summary. Never headers, cookies or bodies."
+    "description": "The newest requests the page loaded and the failed ones among them. Not the page's console output; never headers, cookies or bodies."
+  },
+  {
+    "name": "dom_html",
+    "description": "The markup of one element or of the document. With the Secret Layer on, only a short list of attributes shows its value, and typed values and the bodies of scripts, styles and comments come back as `[withheld]`; with it off, the markup comes back whole."
   },
   {
     "name": "clipboard",
@@ -145,98 +149,126 @@
   },
   {
     "name": "artifact_list",
-    "description": "What this profile has produced: screenshots, downloads, PDFs, recordings."
+    "description": "What this profile has produced (screenshots, downloads, PDFs, recordings) and the files you dropped on it in the app."
   },
   {
     "name": "run_list",
     "description": "This profile's earlier runs, so an agent can see what was already tried."
   },
   {
-    "name": "profile.list",
+    "name": "computed_style",
+    "description": "An element's computed CSS, including shorthands and custom properties like `--brand`, and its box in the viewport."
+  },
+  {
+    "name": "query_selector",
+    "description": "The elements a CSS selector or an XPath matches, as refs any other tool can act on, fifty at a time, each with a short label. A chain `a >> b` enters open shadow roots and same-origin iframes."
+  },
+  {
+    "name": "selector_for",
+    "description": "A CSS selector and an XPath for one element, built from its tag, id, test-hook or position. For an element in a shadow root or an iframe it answers with a chain that `query_selector` follows."
+  },
+  {
+    "name": "read_console",
+    "description": "What the page wrote to its console: logs, warnings, errors, uncaught exceptions and rejected promises, from the page, its frames and its workers, kept from the browser's start. Objects appear as `[object Object]`. Needs a browser engine from the next engine release on; an older one says so."
+  },
+  {
+    "name": "evaluate_script",
+    "description": "Run a JavaScript function that only reads, in a world the page cannot see, and get its value back as JSON. Any write, request or call with an effect is stopped before it lands, and a run ends after 1 s. Only with the Secret Layer off."
+  },
+  {
+    "name": "read_page_variable",
+    "description": "A value from the page's own JavaScript, such as `window.__APP_STATE__.cart`, read without running any of the page's code: getters and proxies are named, never opened. Only with the Secret Layer off."
+  },
+  {
+    "name": "performance_trace",
+    "description": "How a page loads: first and largest paint, blocking time, layout shift, the longest tasks and the slowest requests, and a score on Lighthouse's curves without Speed Index. Never reloads the page and takes no screenshots."
+  },
+  {
+    "name": "profile_list",
     "description": "The profiles on this daemon, with their state."
   },
   {
-    "name": "profile.create",
+    "name": "profile_create",
     "description": "Create a profile with a fresh identity."
   },
   {
-    "name": "profile.start",
+    "name": "profile_start",
     "description": "Start a profile's browser. Does not give you one you can drive."
   },
   {
-    "name": "profile.stop",
+    "name": "profile_stop",
     "description": "Stop a profile's browser."
   },
   {
-    "name": "profile.update",
+    "name": "profile_update",
     "description": "Change a profile's settings: name, proxy, group, geo mode."
   },
   {
-    "name": "input.humanize",
+    "name": "input_humanize",
     "description": "Dispatch one humanized gesture at a coordinate, outside the page map."
   },
   {
-    "name": "session.export",
+    "name": "session_export",
     "description": "A profile's session as a password-encrypted bundle."
   },
   {
-    "name": "session.import",
+    "name": "session_import",
     "description": "Unseal such a bundle into a profile."
   },
   {
-    "name": "credential.list",
-    "description": "Which platforms a profile can log into. Account names, never secrets."
+    "name": "credential_list",
+    "description": "Which platforms a profile can log into, or with `platform` alone, which profiles hold a login for it. Account names, never secrets."
   },
   {
-    "name": "group.list",
+    "name": "group_list",
     "description": "The groups profiles are labelled with."
   },
   {
-    "name": "profile.batch",
+    "name": "profile_batch",
     "description": "Start, stop, delete, or reassign a proxy or extensions across many profiles."
   },
   {
-    "name": "preset.instantiate",
+    "name": "preset_instantiate",
     "description": "Make a fleet from a template: N profiles, each with its own identity."
   },
   {
-    "name": "task.list",
+    "name": "task_list",
     "description": "What is outstanding on a profile."
   },
   {
-    "name": "task.add",
+    "name": "task_add",
     "description": "Put work on a profile's list, for now or for later."
   },
   {
-    "name": "task.start",
+    "name": "task_start",
     "description": "Mark a task as being worked on."
   },
   {
-    "name": "task.done",
+    "name": "task_done",
     "description": "Close a task, with what came of it."
   },
   {
-    "name": "task.cancel",
+    "name": "task_cancel",
     "description": "Drop a task that no longer applies."
   },
   {
-    "name": "proxy.list",
+    "name": "proxy_list",
     "description": "The proxy pool. Never credentials."
   },
   {
-    "name": "extension.list",
+    "name": "extension_list",
     "description": "The extension library, and what each profile loads."
   },
   {
-    "name": "preset.list",
+    "name": "preset_list",
     "description": "The stored templates."
   },
   {
-    "name": "group.create",
+    "name": "group_create",
     "description": "Create a group."
   },
   {
-    "name": "group.delete",
+    "name": "group_delete",
     "description": "Delete a group. Its profiles stay."
   },
   {

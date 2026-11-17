@@ -7,20 +7,20 @@
 
 # Scalebrowser MCP
 
-**Your agent got blocked, stopped at a login, or gave up on a captcha?** Scalebrowser gives each AI agent its own isolated browser with a persistent identity, running on your own machine instead of a vendor's cloud. It stays signed in, handles the captcha, types like a human, and you can take over whenever you want.
+**Browser automation, built for the agentic era.** Scalebrowser gives your AI agents real browser profiles they can drive, workflows they build and run on their own, and logins they use without ever seeing a password. Everything runs in the Scalebrowser app on your own machine instead of a vendor's cloud, and you can take over any profile whenever you want.
 
-This repository connects that browser to your agent over MCP: copy-paste configurations for every client the documentation covers, a small stdio bridge, and runnable SDK examples.
+This repository connects those profiles to your agent over MCP: copy-paste configurations for every client the documentation covers, a small stdio bridge, and runnable SDK examples.
 
 **Before you start**
 
 - **Windows 10 or 11, 64-bit, with a real GPU.** Scalebrowser is a desktop app that runs on your machine. There is no hosted mode.
-- **A Scalebrowser account with an active plan.** The way in is a 7-day trial with one browser. A payment method is required up front. [Plans and prices](https://scalebrowser.net/pricing)
+- **A Scalebrowser account.** The Free plan runs one browser at a time with three profiles and three workflows, and needs no card. [Plans and prices](https://scalebrowser.net/pricing)
 
 **Free, no account needed:** [scalebrowser.net/check](https://scalebrowser.net/check) measures how your current browser looks from the outside, and [scalebrowser.net/ai-agent-check](https://scalebrowser.net/ai-agent-check) measures what your automation tool does with it. Point your agent at the second one and see what a website can tell.
 
 ## Try it in five minutes
 
-1. Sign in at [scalebrowser.net](https://scalebrowser.net/login), open **Download**, and run the installer. It installs for the current user and asks for no administrator rights. SmartScreen warns on first run: choose **More info**, then **Run anyway**.
+1. Sign in at [scalebrowser.net](https://scalebrowser.net/sign-in), open **Download**, and run the installer. It installs for the current user and asks for no administrator rights. SmartScreen warns on first run: choose **More info**, then **Run anyway**.
 2. Start the app and press **Sign in**. The app then downloads and verifies the browser engine, which has to finish before any profile can start.
 3. Copy your API token from **Settings, General, Connect an agent**.
 4. Connect your agent. For Claude Code it is one command:

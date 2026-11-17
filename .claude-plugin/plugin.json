@@ -1,7 +1,7 @@
 {
   "name": "scalebrowser",
-  "version": "0.2.0",
-  "description": "Isolated browsers with a persistent identity for AI agents, on your own Windows machine. Connects Claude Code to the Scalebrowser app and teaches it the lease, read, act, release loop.",
+  "version": "0.2.1",
+  "description": "Browser automation for the agentic era: real browser profiles your agent drives, on your own PC. Connects Claude Code to the Scalebrowser app and teaches it the lease, read, act, release loop.",
   "author": {
     "name": "Scalebrowser",
     "email": "support@scalebrowser.net",

@@ -25,7 +25,7 @@ One version goes out four ways: the MCP Bundle on the GitHub release, the npm pa
 1. Raise `version` in `package.json`, `manifest.json`, `server.json` and `.claude-plugin/plugin.json` together. Claude Code offers an installed plugin an update only when that last one moves.
 2. Build the bundle: `npx @anthropic-ai/mcpb@2.1.2 pack . scalebrowser-<version>.mcpb`. `.mcpbignore` keeps it to the bridge, its tool list, the manifest, the icon, the README and the license.
 3. Put `sha256sum scalebrowser-<version>.mcpb` into `server.json`, commit, and attach exactly that file to the release `v<version>`. A bundle packed a second time has a different hash.
-4. Publish the npm package, then the registry entry (`mcp-publisher login dns --domain scalebrowser.net`, `mcp-publisher publish`). The registry checks `mcpName` in the published npm version, so npm goes first.
+4. The npm package publishes itself: `.github/workflows/publish.yml` runs on the tag `v<version>` (trusted publishing, no stored token, with provenance). A tag that already exists is published by hand with `gh workflow run publish.yml -f tag=v<version>`. Then the registry entry (`mcp-publisher login dns --domain scalebrowser.net`, `mcp-publisher publish`). The registry checks `mcpName` in the published npm version, so npm goes first.
 
 ## The plugin
 

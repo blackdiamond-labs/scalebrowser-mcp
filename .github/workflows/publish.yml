@@ -1,0 +1,87 @@
+# Publishes @scalebrowser/mcp to npm with a provenance attestation that names
+# this repository and this run. Trusted publishing: npm signs the run in over
+# OIDC, there is no stored token to rotate.
+#
+# Runs on a release tag `vX.Y.Z`, or by hand with `tag` naming an existing
+# release tag. The job checks out THAT tag, so a tag cut before this workflow
+# existed (v0.2.1) is published from its own files, never from main.
+#
+# GitHub-hosted runners only and no pull_request trigger: nothing from a fork
+# runs here.
+
+name: publish
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to publish, for example v0.2.1"
+        required: true
+
+permissions:
+  contents: read
+  id-token: write # trusted publishing (OIDC) and the provenance attestation
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.TAG }}
+
+      # No `registry-url`: it writes a token line into `.npmrc`, and npm reads
+      # an empty token from it instead of none, then answers ENEEDAUTH instead
+      # of signing in over OIDC.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+
+      # After the Node setup, never before it: setup-node puts its own npm
+      # first on the PATH. Trusted publishing exists from npm 11.5.1 on; an
+      # older npm never asks for the OIDC token and fails with ENEEDAUTH.
+      - name: Use an npm that can do trusted publishing
+        run: npm install -g npm@11 && npm --version
+
+      - name: Test
+        run: npm test
+
+      - name: Refuse a tag that disagrees with the package version
+        run: |
+          pkg="$(node -p "require('./package.json').version")"
+          if [ "v$pkg" != "$TAG" ]; then
+            echo "::error::tag $TAG does not match package.json $pkg"
+            exit 1
+          fi
+
+      - name: Publish
+        run: |
+          set -euo pipefail
+          have="$(npm --version)"
+          node -e 'const [a,b,c]=process.argv[1].split(".").map(Number); process.exit(a>11||(a===11&&(b>5||(b===5&&c>=1)))?0:1)' "$have" \
+            || { echo "::error::npm $have is below 11.5.1 and cannot do trusted publishing"; exit 1; }
+          npm publish --provenance --access public
+
+      - name: npm serves the published version
+        run: |
+          set -euo pipefail
+          name="$(node -p "require('./package.json').name")"
+          for i in $(seq 1 30); do
+            if [ "$(npm view "$name@${TAG#v}" version 2>/dev/null)" = "${TAG#v}" ]; then
+              echo "$name@${TAG#v} is served."
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::$name@${TAG#v} was not served after 5 minutes"
+          exit 1
